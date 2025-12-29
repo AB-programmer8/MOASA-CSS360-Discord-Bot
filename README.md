@@ -73,7 +73,7 @@ Visit the generated url from the previous step and choose the server that you wa
 
 Once the bot is added it will appear on your Discord server in offline mode.
 
-You can now run the code in the repository using the command line by typing the command `npm start`. 
+You can now run the code in the repository using the command line by typing the commands `npm run register' followed by `npm start`. 
 
-
-
+## Remember: Keep your repository private if you have a .env file in it! Keys and tokens are passwords!
+## Remember: If you make changes in codespaces, commit and push when done!
