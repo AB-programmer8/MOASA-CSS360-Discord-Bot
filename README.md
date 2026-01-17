@@ -18,7 +18,8 @@ The specific functionality of the bot is still being discussed.
   - Mini
   - Oliver
   - Alexandra
-  - (add others)
+  - Sari
+  - Ayad
 
 ## Course Context
 This project is part of CSS360 and is under active development.
