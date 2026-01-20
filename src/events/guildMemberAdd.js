@@ -2,6 +2,7 @@ import { EmbedBuilder, userMention } from "discord.js";
 
 const CHANNEL_NAME = process.env.CHANNEL_NAME;
 const MEME_URL = process.env.MEME_URL || "";
+const CLIENT_ID = process.env.CLIENT_ID;
 
 const event = {
   name: "guildMemberAdd",
