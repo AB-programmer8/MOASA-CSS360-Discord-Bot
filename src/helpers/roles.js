@@ -1,20 +1,16 @@
-export const assignRoles = (players) => {
-  // players = array of GuildMember objects
-
-  if (players.length < 3) {
-    throw new Error("Not enough players to start the game");
-  }
+export const assignRoles = (playerIds) => {
+  const players = [...playerIds];
 
   // Shuffle players
-  const shuffled = [...players].sort(() => Math.random() - 0.5);
+  players.sort(() => Math.random() - 0.5);
 
   const roles = new Map();
 
-  roles.set(shuffled[0].id, "Mafia");
-  roles.set(shuffled[1].id, "Doctor");
+  roles.set(players[0], "Mafia");
+  roles.set(players[1], "Doctor");
 
-  for (let i = 2; i < shuffled.length; i++) {
-    roles.set(shuffled[i].id, "Civilian");
+  for (let i = 2; i < players.length; i++) {
+    roles.set(players[i], "Civilian");
   }
 
   return roles;

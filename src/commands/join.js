@@ -1,4 +1,6 @@
 import { SlashCommandBuilder } from "discord.js";
+import { assignRoles } from "../helpers/roles.js";
+import { dmRoles } from "../helpers/dmRoles.js";
 
 let joinOpen = false;
 const joinedPlayers = new Set();
@@ -75,8 +77,15 @@ export default {
       });
     } else {
       await interaction.editReply({
-        content: `✅ **Recruitment Closed!**\nTotal Players: **${finalSize}**\nMembers: ${formatPlayers(interaction.client, joinedPlayers)}\n\nUse \`/mafia start\` to begin!`
+        content:
+          `✅ **Recruitment Closed!**\n` +
+          `Total Players: **${finalSize}**\n` +
+          `Members: ${formatPlayers(interaction.client, joinedPlayers)}\n\n` +
+          `🎭 Roles are being assigned...`
       });
+
+      const roles = assignRoles(joinedPlayers);
+      await dmRoles(roles, interaction.guild);
     }
   }
 };
