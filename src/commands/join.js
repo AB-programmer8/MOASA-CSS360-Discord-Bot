@@ -1,7 +1,9 @@
 import { SlashCommandBuilder } from "discord.js";
+import { assignRoles } from "../helpers/roles.js";
+import { joinedPlayers, playerRoles } from "../helpers/gameState.js";
 
 let joinOpen = false;
-const joinedPlayers = new Set();
+//const joinedPlayers = new Set();
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 function formatPlayers(client, players) {
@@ -75,8 +77,19 @@ export default {
       });
     } else {
       await interaction.editReply({
-        content: `✅ **Recruitment Closed!**\nTotal Players: **${finalSize}**\nMembers: ${formatPlayers(interaction.client, joinedPlayers)}\n\nUse \`/mafia start\` to begin!`
+        content:
+          `✅ **Recruitment Closed!**\n` +
+          `Total Players: **${finalSize}**\n` +
+          `Members: ${formatPlayers(interaction.client, joinedPlayers)}\n\n` +
+          `🎭 Roles have been assigned!\nUse \`/role\` to view your role privately.`
       });
+
+      const roles = assignRoles(joinedPlayers);
+
+      // store roles for /role command
+      for (const [userId, role] of roles.entries()) {
+        playerRoles.set(userId, role);
+      }
     }
   }
 };
